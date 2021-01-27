@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        h1{
+            font-family: "Comic Sans MS";
+            font-style: oblique;
+        }
+
+    </style>
+</head>
+<body>
+
+
+<h1> <%= title %> </h1>
+
+<h2>这是一个对象user</h2>
+<ul>
+    <li>
+        <%=user.name%>
+    </li>
+    <li>
+        <%=user.age%>
+    </li>
+</ul>
+
+<h2>遍历list</h2>
+<ul>
+    <%for(var i=0;i<list.length;i++){%>
+        <li><%=list[i]%></li>
+    <%}%>
+</ul>
+
+<!--条件判断-->
+<%if(flag){%>
+    <strong>It is true</strong>
+<%}%>
+</body>
+
+<!--html输出-->
+<%-html%>
+
+<!--引入其他模版-->
+<%- include('footer.ejs')%>
+</html>
