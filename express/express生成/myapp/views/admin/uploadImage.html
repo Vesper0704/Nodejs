@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+</head>
+
+<body>
+<!--要上传图片 必须在表单上加上enctype="multipart/form-data"-->
+<form action="/admin/upload/doUpload" enctype="multipart/form-data" method="post">
+    标题： <input type="text" name="title"/>
+    图片：<input type="file" name="image" id="image" />
+    <input type="submit" value="提交"/>
+</form>
+
+<script>
+
+</script>
+</body>
+</html>
