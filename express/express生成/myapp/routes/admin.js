@@ -3,15 +3,20 @@ const router = express.Router()
 
 const multer= require('multer')
 const path = require('path')
-//上传之前目录必须已存在
-// const upload = multer({
-//     dest:'public/images'
-// })
+const sd = require('silly-datetime')
+const mkdirp = require('mkdirp')
 
 const storage = multer.diskStorage({
     //配置上传的目录
-    destination:function(req,file,cb){
-        cb(null,'public/images/')  //  注意images后面的 / 必须加上
+    destination: async (req,file,cb)=>{
+        //按照日期建立目录 存放图片
+        let day = sd.format(new Date() , 'YYYYMMMDD');
+        let dir = path.join('public/images',day)
+
+        //mkdirp是异步方法 所以必须加上await等待执行完成
+        await mkdirp(dir)
+
+        cb(null,dir)  //  注意images后面的 / 必须加上
     },
 
     //修改上传的文件名

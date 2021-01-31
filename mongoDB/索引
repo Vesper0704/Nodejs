@@ -1,0 +1,69 @@
+1. 索引 -- 一种排好序的数据结构
+创建索引
+db.admin.ensureIndex({username:1})
+
+查看索引
+db.admin.getIndexes()
+[
+	{
+		"v" : 2,
+		"key" : {
+			"_id" : 1
+		},
+		"name" : "_id_"  //mongo默认的
+	},
+	{
+		"v" : 2,
+		"key" : {
+			"username" : 1   //自定义
+		},
+		"name" : "username_1"
+	}
+]
+
+删除索引
+db.admin.dropIndex({username:1})
+{ "nIndexesWas" : 2, "ok" : 1 }
+
+2. 复合索引
+> db.admin.ensureIndex({username:1,age:1})
+
+{
+	"createdCollectionAutomatically" : false,
+	"numIndexesBefore" : 1,
+	"numIndexesAfter" : 2,
+	"ok" : 1
+}
+> db.admin.getIndexes()
+[
+	{
+		"v" : 2,
+		"key" : {
+			"_id" : 1
+		},
+		"name" : "_id_"
+	},
+	{
+		"v" : 2,
+		"key" : {
+			"username" : 1,
+			"age" : 1
+		},
+		"name" : "username_1_age_1"
+	}
+]
+
+3. 唯一索引
+>db.admin.ensureIndex({username:1},{unique:true})
+
+//插入重复的就会报错
+> db.admin.insert({username:'drj'})
+WriteResult({
+	"nInserted" : 0,
+	"writeError" : {
+		"code" : 11000,
+		"errmsg" : "E11000 duplicate key error collection: shop.admin index: username_1 dup key: { username: \"drj\" }"
+	}
+})
+
+//设置索引后 查询速度会加快 但是增加、更新速度 会稍微降低

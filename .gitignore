@@ -1,2 +1,3 @@
 # Project exclude paths
 /express/node_modules/
+/express/express生成/myapp/node_modules
