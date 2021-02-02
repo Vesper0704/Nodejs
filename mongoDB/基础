@@ -1,38 +1,3 @@
-如何使用mongodb
-
-brew 启动：
-brew services start mongodb-community@4.4
-
-brew 停止：
-brew services stop mongodb-community@4.4
-
-mongod 命令后台进程方式：
-mongod --config /usr/local/etc/mongod.conf --fork
-
-这种方式启动要关闭可以进入 mongo shell 控制台来实现：
-> db.adminCommand({ "shutdown" : 1 })
-
-https://www.jianshu.com/p/2d0a1ecd0c82
-
-为连接mongodb服务端，终端输入命令mongo
-show dbs  查看当前的数据库
-
-use <options> 使用/切换
-
-exit 退出
-
-Mongo :
-Nosql
-解决大数据查询/存储问题
-
-介于关系型和非关系型数据库之间
-
-非关系数据库中功能最丰富 最像关系数据库
-
-没有行列的概念  用json存储数据
-
-数据库 -
-表 - 集合
 
 > show dbs
 admin      0.000GB

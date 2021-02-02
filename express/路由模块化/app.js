@@ -14,7 +14,7 @@ const bodyParser=require('body-parser')
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json())
 
-//倒入模块
+//导入模块
 const userRouter = require('./routes/user')
 const adminRouter = require('./routes/admin')
 app.use('/user',userRouter)

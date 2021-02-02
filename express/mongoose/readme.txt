@@ -1,0 +1,6 @@
+通过关系型数据库的思想来设计非关系型数据库
+在js异步环境下操作mongoDB
+mongoose模块
+基于mongodb驱动
+
+定义Schema->生成Model
