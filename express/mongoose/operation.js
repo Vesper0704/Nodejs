@@ -82,11 +82,11 @@ User.updateOne({name:'user0'},{age:999},(err)=>{
 //     }
 // })
 
-// Product.findbyName('pro23',(err,docs)=>{
-//     if(!err){
-//      console.log(docs)
-//     }
-// })
+Product.findByName('pro23',(err,docs)=>{
+    if(!err){
+     console.log(docs)
+    }
+})
 
 // let proTest = new Product({
 //     name:'ProTest',

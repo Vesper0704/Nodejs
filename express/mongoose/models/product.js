@@ -23,7 +23,8 @@ const productSchema =new Schema(
 
 
 //在Schema扩展静态方法 findbyID() etc.   静态方法 Product.statics.findbyName()
-productSchema.statics.findbyName=function(name,cb){
+productSchema.statics.findByName= function(name,cb){
+    //name是需要传入的key值 cb是回调函数
     //this获取当前的model
     this.find({'name':name},function(err,docs){
         if(!err)
@@ -42,7 +43,6 @@ productSchema.methods.printMyself = function(){
 
 
 let Product = mongoose.model('Product',productSchema,'product') //第三个参数就是要操作的集合
-
 
 module.exports = Product
 
