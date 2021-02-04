@@ -1,13 +1,13 @@
 const fs = require('fs')
 
 //1. fs.stat
-fs.stat('./test.html',(err,data)=>{
+fs.stat('./test.html',(err,stats)=>{
     if(err){
         console.log(err)
     }
     else{
-        console.log(`是文件吗? ${data.isFile()}`)  //true
-        console.log(`是目录吗? ${data.isDirectory()}`) //false
+        console.log(`是文件吗? ${stats.isFile()}`)  //true
+        console.log(`是目录吗? ${stats.isDirectory()}`) //false
     }
 })
 
