@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+</head>
+
+<body>
+<div id="app">
+
+</div>
+
+<script>
+    /**
+     * 要求  2个请求都完成之后再进行回调
+     *
+     * 参数：可迭代对象  可以传入一个数组
+     */
+    Promise.all([
+        new Promise((resolve,reject)=>{
+            setTimeout(()=> {
+                resolve('first')
+            },1000)
+        }),
+        new Promise((resolve,reject)=>{
+            setTimeout(()=> {
+                resolve('second')
+            },2000)
+        }),
+    ]).then(res=>{
+        //等待2s 时延等于用时最长的那个
+        console.log(res[0]);  //res数组第一个保存第一个promise的数据
+        console.log(res[1]);  //res数组第2个保存第2个promise的数据
+    })
+</script>
+</body>
+</html>

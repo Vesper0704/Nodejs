@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+</head>
+
+<body>
+<div id="app">
+
+</div>
+
+<script>
+
+    new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+            //第一次网络请求
+            resolve('first')
+        },1000)
+    }).then(data=>{
+        console.log('process data: '+data)
+
+        // return new Promise((resolve,reject)=>{
+        //     resolve(data+'second')
+        // })
+
+        //可以简写为
+        //return Promise.resolve(data+'+second')
+
+        //还可以简写为
+        return data+' +second'  //自动包装Promise
+
+
+        /*
+        reject的另外两种方法：
+        Promise.reject('err msg')
+        throw 'err msg'
+         */
+
+    }).then(data=>{
+        console.log(data)
+    })
+</script>
+
+</body>
+</html>

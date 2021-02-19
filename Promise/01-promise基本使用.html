@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+<div id="app">
+Promise 的基本使用
+    <h5>打开console</h5>
+
+    <hr/>
+
+    <h5>promise三种状态:</h5>
+    <ul>
+        <li>pending 等待  正在进行网络请求 或者定时器没有到时间</li>
+        <li>fulfilled 成功</li>
+        <li></li>
+    </ul>
+
+
+</div>
+
+<script>
+
+    //一个异步操作
+  // setTimeout(()=>{
+  //     console.log('get data after 1s....')
+  // },1000)
+
+    /**
+     * 传入promise的参数是函数
+     * 这个函数参数又有两个参数：resolve reject
+     * resolve reject本身又是函数
+     *
+     * 链式编程
+     */
+    new Promise((resolve,reject)=>{
+
+        //第一个逻辑
+        setTimeout(()=>{
+            resolve('success1')  //遇到resolve 去往then
+        },1000)
+
+    }).then(()=> {
+        //拿到第一次的数据
+        console.log('套娃1')
+
+        //第二个逻辑
+        //resolve 成功 去往then
+        //reject是网络请求失败  去往catch
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                reject('failure')  //去往catch
+                resolve()  //
+            }, 1000)
+        })
+    }).then(()=>{
+        //拿到第二次数据
+        console.log('套娃2')
+    }).catch((data)=>{
+        console.log(data)
+    })
+
+
+    /**
+     * 第二种写法
+     */
+    new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+           // resolve('success')
+            reject('failed')
+        },2000)
+    }).then(data=>{
+        console.log(data)
+    },err=>{
+        console.log(err)
+    })
+</script>
+</body>
+
+<style>
+   body{
+        text-align: center;
+    }
+
+ul{
+       text-align: center;
+   }
+</style>
+</html>

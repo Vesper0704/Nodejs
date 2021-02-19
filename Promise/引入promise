@@ -1,0 +1,9 @@
+回调地狱 ：由于网络的异步请求，回调函数解决 但是当网络请求一层套一层 导致大量回调函数嵌套 难以维护
+
+eg. $.ajax('url',function(data1){
+        $.ajax(data1['url1'],function(data2){
+            $.ajax(data2['url2'],function(data3){
+                //do something and return
+            })
+        })
+    })

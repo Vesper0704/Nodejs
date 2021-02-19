@@ -19,7 +19,11 @@ async function test(){
 }
 
 async function main(){
-    let data  = await test() //获取异步方法里面的数据
+    let data  = await test().then(data=>{
+        console.log(data)
+    }).catch(()=>{
+        console.log('catch')
+    }) //获取异步方法里面的数据
     console.log(data)
 }
 console.log(main())
