@@ -30,7 +30,7 @@ async function compare(target,dir){
     for (const each of getFiles) {
         let phash = await imghash.hash(dir+'/'+each)
         let distance = await leven(phash,targetHash)
-        console.log(`The phash of ${each} is ${phash} \n`)
+        console.log(`The phash of ${each} is ${phash}`)
         console.log(`The distance between the ${target} and ${each} is ${distance} \n`);
     }
 }
