@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>发表留言</title>
+</head>
+
+<body>
+<div id="app">
+    <h4>发表留言吧！</h4>
+    <a href="/post"> <button class="btn1">PUBLISH</button> </a>
+<!--    / 在服务端就是根路径  -->
+    <div><img src="/public/img/sea1.png" style="width:500px"/></div>
+    <hr/>
+    <div class="container">
+        <div>Comments</div><hr/>
+<!--        <li>hello</li>-->
+<!--        <li>js</li>-->
+<!--        <li>html</li>-->
+<!--        <li>css</li>-->
+        {{each comments}}
+        <li>{{$value.name}} said: {{$value.content}} at {{$value.time}}</li>
+        <hr/>
+        {{/each}}
+    </div>
+</div>
+
+<script>
+
+</script>
+<style>
+    body{
+        text-align: center;
+        background: beige;
+    }
+    h4{
+        font-family: "Comic Sans MS";
+        font-size: large;
+    }
+     .container{
+         font-size:20px;
+         font-family:"Comic Sans MS"
+     }
+    .btn1{
+        background: cadetblue;
+        font-family: "Comic Sans MS";
+        width:100px;
+        height:30px
+    }
+    li{
+        list-style: none;
+        font-size: 14px;
+    /*   不显示前面的小圆点 */
+    }
+
+</style>
+</body>
+</html>

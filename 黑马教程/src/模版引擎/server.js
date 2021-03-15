@@ -10,6 +10,7 @@ server.on('request',(req,res)=> {
                 return res.end('404')
             }else{
                 data=data.toString()
+                //渲染字符串
                 let result = template.render(data,{
                     name:'drj',
                     title:'personal info'
