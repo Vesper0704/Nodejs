@@ -3,10 +3,23 @@
 const http = require('http')
 const fs = require('fs')
 const template = require('art-template')
-const url = require('url')
+const Url = require('url')
 const queryString = require('querystring')
 
-
+let users = [
+    {
+        username:'user1',
+        password:'user1'
+    },
+    {
+        username:'user2',
+        password:'user2'
+    },
+    {
+        username:'user3',
+        password:'user3'
+    }
+]
 let comments = [
     {
         name:'p1',
@@ -30,13 +43,14 @@ http.createServer()
     })
 .on('request',(req,res)=>{
     let url = req.url
+
     if(url==='/'){
        // res.end('hello')
         fs.readFile('./views/index.html',(err,data)=>{
             if(!err){
                 data=data.toString()
                 let result  =  template.render(data,{
-                    comments
+                   comments: comments
                 })
                 res.end(result)
             }else{
@@ -52,9 +66,9 @@ http.createServer()
                 res.end(data)
             }
         })
-    }else if(url==='/post'){
+    }else if(url==='/comment'){
         console.log(url);
-        fs.readFile('./views/post.html',(err,data)=>{
+        fs.readFile('./views/comment.html',(err,data)=>{
             if(!err){
                 res.end(data)
             }else{
@@ -63,6 +77,7 @@ http.createServer()
         })
     }
     else if(url.startsWith('/confirm')){
+        //处理post请求
         //过滤掉这个请求小图标的
         if(req.url!='/favicon.ico') {
             console.log('hi');
@@ -78,30 +93,72 @@ http.createServer()
                 let name = obj.name
                 let content = obj.content
                 console.log(typeof name,typeof content)
-                let newItem = {
-                    name: name,
-                    content:content,
-                    time : '2021-3-15'
+                if(name!='' && content!='') {
+                    let date = new Date()
+                    let year = date.getFullYear().toString()
+                    let month = (date.getMonth()+1).toString()
+                    let day = date.getDate().toString()
+                  //  console.log(date.getDay()) // 星期几
+                    let newItem = {
+                        name: name,
+                        content: content,
+                        time: `${year}-${month}-${day}`
+                    }
+                    console.log(newItem)
+                    comments.push(newItem)
                 }
-                console.log(newItem)
-                comments.push(newItem)
 
                 /*
-                   重定向
-                    */
-                res.statusCode = 302
+              提交之后 重定向
+                */
+                res.statusCode = 302 //302 临时重定向
+                //redirect to root path
                 res.setHeader('Location', '/')
                 res.end('bye')
 
             })
-
-
+        }
         }
 
-        }
+     else if(url==='/getUser')
+     {
+       fs.readFile('./views/get.html',(err,data)=>{
+           if(!err){
+               res.end(data)
+           }
+       })
+     }
+     else if(url.startsWith('/getSth')){
+        // console.log(Url.parse(url));
+        let parsedUrl = Url.parse (url,true)
+        // console.log(parsedUrl.query.username);
+        // console.log(parsedUrl.query.password)
+        //res.end(JSON.stringify(parsedUrl.query))
+        let queryObj = parsedUrl.query
+        let username = queryObj.username
+        let password = queryObj.password
+        users.push({
+            username,
+            password
+        })
+        res.statusCode=302
+        res.setHeader('Location','/Account')
 
+        res.end('done')
 
+    }
 
+     else if(url==='/Account'){
+         fs.readFile('./views/Account.html',(err,data)=>{
+             if(!err){
+                 data = data.toString()
+                 let renderRes = template.render(data,{
+                     users:users
+                 })
+                 res.end(renderRes)
+             }
+         })
+     }
 
     else if(url==='/404'){
         fs.readFile('./views/404.html',(err,data)=>{

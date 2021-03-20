@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body>
+<div id="app">
+<h2>User Account Info</h2>
+<!--    art-template模版字符串语法 each /each-->
+    {{each users}}
+    <li>username: {{$value.username}} -- password: {{$value.password}}</li>
+    <hr/>
+    {{/each}}
+</div>
+
+<script>
+
+</script>
+<style>
+    #app{
+        text-align: center;
+        font-family: "Comic Sans MS";
+    }
+</style>
+</body>
+</html>
