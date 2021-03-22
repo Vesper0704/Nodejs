@@ -1,4 +1,4 @@
-let os = require('黑马教程/src/os')
+let os = require('os')
 let path=require('path')
 
 //获取CPU信息

@@ -5,8 +5,26 @@
   - npm安装
 - 自定义模块  module.exports 
 
+# npm
+ - [https://www.npmjs.com/]
+   npm --version
+ - 升级npm
+   npm install --global npm
+ - npm init -y 生成package.json
+ - npm install 下载
+ - npm install -S 下载并且保存依赖 (package.json dependencies)
+ - npm uninstall 只删除 但不清除相应的依赖项
+ - npm uninstall -S 也清除依赖项
+   
 # 模块引入
 require()
+ * 优先从缓存加载
+ * 核心模块
+ * 路径形式的文件模块
+ * 第三方模块
+   - node_modules/art-template/package.json
+   - node_modules/art-template/package.json 的main属性
+   - 加载包其实就是加载 index.js
 
 # 模块化
 - 文件作用域
@@ -40,3 +58,5 @@ console.log(x+y),
 str:'hello'
 }
  
+
+[]: https://www.npmjs.com/
