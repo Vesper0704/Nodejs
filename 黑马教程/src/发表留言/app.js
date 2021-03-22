@@ -1,5 +1,4 @@
 
-
 const http = require('http')
 const fs = require('fs')
 const template = require('art-template')
@@ -109,7 +108,7 @@ http.createServer()
                 }
 
                 /*
-              提交之后 重定向
+                    提交之后 重定向
                 */
                 res.statusCode = 302 //302 临时重定向
                 //redirect to root path
