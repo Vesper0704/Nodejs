@@ -1,0 +1,9 @@
+{
+  "students": [
+    {"id": 1, "name": "stu1", "gender": 0, "age": 18},
+    {"id": 2, "name": "stu2", "gender": 1, "age": 18},
+    {"id": 3, "name": "stu3", "gender": 0, "age": 18},
+    {"id": 4, "name": "stu4", "gender": 1, "age": 18},
+    {"id": 5, "name": "stu5", "gender": 0, "age": 18}
+  ]
+}

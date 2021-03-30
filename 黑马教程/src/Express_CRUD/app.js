@@ -3,9 +3,13 @@ const template = require('express-art-template')
 const app = new express()
 const fs = require('fs')
 app.engine('html',template)
+const bodyParser = require('body-parser')
 
 app.use(express.static('./public'))
 app.use(express.static('./node_modules'))
+app.use(bodyParser.urlencoded({extended:false}))
+app.use(bodyParser.json())
+
 let Items = {
     name:'drj',
     age:13
@@ -30,6 +34,35 @@ app.get('/',(req,res)=>{
         }
     })
 
+})
+
+app.get('/add',(req,res)=>{
+
+            res.render('add.html')
+
+})
+
+app.post('/confirm',(req,res)=>{
+    fs.readFile('./data/db.json',(err,data)=>{
+        if(!err){
+            console.log(JSON.parse(data.toString()).students);
+            console.log(req.body)
+            let {name,gender,age} = req.body
+         //  res.send('yes')
+            let stu = JSON.parse(data.toString()).students
+        //    console.log(stu)
+            let newStu ={
+                "id":stu.length+1,
+                "name":name,
+                "gender":parseInt(gender),
+                "age":parseInt(age)
+            }
+            stu.push(newStu)
+            console.log(JSON.stringify(stu))
+            fs.writeFileSync('./data/db.json',`{"students":${JSON.stringify(stu)}}`)
+            res.redirect('/')
+        }
+    })
 })
 
 app.listen(3020,()=>{

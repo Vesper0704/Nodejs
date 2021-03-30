@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>add a student</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+</head>
+
+<body>
+<div id="app">
+    <h2>Add a Student</h2>
+<form action="/confirm" @submit="check" method="post">
+    <div>name:<input type="text" name = "name" v-model="name"/></div>
+    <div>gender:<input type="text" name = "gender" v-model="gender"/></div>
+    <div>age:<input type="number" name ="age" v-model="age"/></div>
+    <div><input type="submit" value="submit"/></div>
+</div>
+
+<script>
+var app = new Vue({
+    el:"#app",
+    data:{
+        name:'',
+        gender:'',
+        age:''
+    },
+    methods:{
+        check(e){
+            if(this.name!='' && this.gender!=='' && this.age>0 ){
+//this.errors.push()
+                return
+            }else{
+               // this.errors.push('wrong')
+                alert('wrong format')
+                e.preventDefault()
+            }
+        }
+    }
+})
+</script>
+<style>
+    body{
+        text-align: center;
+        font-family: "Comic Sans MS";
+    }
+</style>
+</body>
+</html>
