@@ -1,14 +1,25 @@
 const express = require('express')
+
 const template = require('express-art-template')
+
 const app = new express()
+
 const fs = require('fs')
+
+const del = require('./utils/delete').deleteId
+
+/*
+！！！ 模版引擎和bodyparser中间件必须提前挂载好
+ */
 app.engine('html',template)
 const bodyParser = require('body-parser')
+app.use(bodyParser.urlencoded({extended:false}))
+app.use(bodyParser.json())
+
 
 app.use(express.static('./public'))
 app.use(express.static('./node_modules'))
-app.use(bodyParser.urlencoded({extended:false}))
-app.use(bodyParser.json())
+
 
 let Items = {
     name:'drj',
@@ -37,8 +48,7 @@ app.get('/',(req,res)=>{
 })
 
 app.get('/add',(req,res)=>{
-
-            res.render('add.html')
+            res.render('new.html')
 
 })
 
@@ -63,6 +73,18 @@ app.post('/confirm',(req,res)=>{
             res.redirect('/')
         }
     })
+})
+
+app.get('/delete',(req,res)=>{
+   //res.send(req.query.id)
+    let id = req.query.id
+    console.log(id);
+    del(id,(msg)=>{
+        console.log(msg);
+    })
+
+    res.redirect('/')
+
 })
 
 app.listen(3020,()=>{

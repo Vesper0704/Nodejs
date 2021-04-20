@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+
+<body>
+<div id="app">
+<button @click="getInfo(url1)">
+    get data
+</button>
+
+</div>
+
+<script>
+    let getInfo = function(url,cb){
+        let xhr = new XMLHttpRequest()
+        //请求加载成功时执行
+        xhr.onload = function(){
+          cb(xhr.responseText)
+        }
+        xhr.open('get',url,true)
+        xhr.send()
+    }
+    var app = new Vue({
+        el: "#app",
+        data:{
+            info_:'',
+            url1:'data.json'
+        },
+        methods:{
+            getInfo(url){
+                // let xhr = new XMLHttpRequest()
+                // //请求加载成功时执行
+                // xhr.onload = function(){
+                //     console.log(xhr.responseText);
+                //     this.info_=xhr.responseText
+                //     console.log(this.info_);
+                // }
+                // xhr.open('get',url,true)
+                // xhr.send()
+            }
+        },
+        updated:{
+            getInfo(url){
+                let xhr = new XMLHttpRequest()
+                //请求加载成功时执行
+                xhr.onload = function(){
+                    console.log(xhr.responseText);
+                    this.info_=xhr.responseText
+                    console.log(this.info_);
+                }
+                xhr.open('get',url,true)
+                xhr.send()
+            }
+        }
+
+
+    })
+</script>
+</body>
+</html>

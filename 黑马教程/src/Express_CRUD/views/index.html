@@ -83,6 +83,7 @@
                         <th>name</th>
                         <th>gender</th>
                         <th>age</th>
+                        <th>operation</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -92,6 +93,10 @@
                         <td>{{$value.name}}</td>
                         <td>{{$value.gender}}</td>
                         <td>{{$value.age}}</td>
+                        <td>
+<!--                            <a href="#"></a>-->
+                            <a href="/delete?id={{$value.id}}" >delete</a>
+                        </td>
                     </tr>
                     {{ /each}}
                     </tbody>
